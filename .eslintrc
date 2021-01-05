@@ -1,0 +1,17 @@
+{
+  "extends": ["react-app", "plugin:jsx-a11y/recommended"],
+  "plugins": ["jsx-a11y", "react-hooks"],
+  "parserOptions": {
+    "ecmaVersion": 2017
+  },
+  "globals": {},
+  "env": {
+    "es6": true
+  },
+  "rules": {
+    "quotes": [1, "single"],
+    "react/react-in-jsx-scope": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
+  }
+}
