@@ -12,7 +12,7 @@ const getFirebaseAppInstance = () => {
   try {
     const isFirebaseAvailable = typeof firebase !== 'undefined';
     if (isFirebaseAvailable) {
-      // eslint-disable-next-line no-undef
+      // @ts-ignore
       const app = firebase.app();
       return app;
     }

@@ -1,8 +1,8 @@
-import { CardContent, Paper } from '@material-ui/core';
+import { Button, CardContent, Paper } from '@material-ui/core';
 import Head from 'next/head';
 import React, { useEffect, useRef, useContext } from 'react';
 import { FirebaseAuthUIContext } from 'src/contexts/FirebaseAuth';
-import { useFirebase, useFirebaseApp } from 'src/hooks';
+import { useFirebase } from 'src/hooks';
 
 const Login = () => {
   return (
@@ -48,7 +48,7 @@ const FirebaseAuthContent = ({}) => {
     if (authUIInstance && ref.current && config) {
       authUIInstance.start(ref.current, config);
     }
-  }, [authUIInstance, config]);
+  }, [authUIInstance, config, ref.current]);
   if (error) {
     return error.name;
   }
@@ -62,6 +62,7 @@ const FirebaseAuthContent = ({}) => {
         {currentUser.displayName ??
           currentUser.phoneNumber ??
           currentUser.email}
+        <Button onClick={() => auth().signOut()}>Sign out</Button>
       </span>
     );
   }
@@ -72,9 +73,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 
 const useCurrentUser = () => {
   const firebase = useFirebase();
-  // @ts-ignore
   const [user, loading, error] = useAuthState(firebase.auth());
-  // @ts-ignore
   const { auth } = firebase;
   return [[user, loading, error], auth];
 };
